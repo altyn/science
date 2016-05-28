@@ -1,0 +1,103 @@
+extends layout
+
+block content
+    .container.main-page
+        .row
+            .col.s4
+                .input-field.col.s12
+                    select
+                        option(value='', disabled='', selected='') Choose your option
+                        option(value='1') Option 1
+                        option(value='2') Option 2
+                        option(value='3') Option 3
+                    label Materialize Select
+                .input-field.col.s12
+                    select(multiple='')
+                        option(value='', disabled='', selected='') Choose your option
+                        option(value='1') Option 1
+                        option(value='2') Option 2
+                        option(value='3') Option 3
+                    label Materialize Multiple Select
+
+                .input-field.col.s12
+                    select(multiple='')
+                        optgroup(label='team 1')
+                            option(value='1') Option 1
+                            option(value='2') Option 2
+                        optgroup(label='team 2')
+                            option(value='3') Option 3
+                            option(value='4') Option 4
+                    label Optgroups
+                .col.s12
+                    label Browser Select
+                    select.browser-default
+                        option(value='', disabled='', selected='') Choose your option
+                        option(value='1') Option 1
+                        option(value='2') Option 2
+                        option(value='3') Option 3
+
+            .col.s8
+                .col.s4
+                    .card
+                        .card-image.waves-effect.waves-block.waves-light
+                            img.activator(src='http://d.gr-assets.com/books/1447139181l/25897953.jpg')
+                        .card-content
+                            span.card-title.activator.grey-text.text-darken-4
+                                | Card Title
+                                i.material-icons.right more_vert
+                            p
+                                a(href='#') This is a link
+                        .card-reveal
+                            span.card-title.grey-text.text-darken-4
+                                | Card Title
+                                i.material-icons.right close
+                            p
+                                | Here is some more information about this product that is only revealed once clicked on.
+                .col.s4
+                    .card
+                        .card-image.waves-effect.waves-block.waves-light
+                            img.activator(src='http://d.gr-assets.com/books/1447139181l/25897953.jpg')
+                        .card-content
+                            span.card-title.activator.grey-text.text-darken-4
+                                | Card Title
+                                i.material-icons.right more_vert
+                            p
+                                a(href='#') This is a link
+                        .card-reveal
+                            span.card-title.grey-text.text-darken-4
+                                | Card Title
+                                i.material-icons.right close
+                            p
+                                | Here is some more information about this product that is only revealed once clicked on.
+                .col.s4
+                    .card
+                        .card-image.waves-effect.waves-block.waves-light
+                            img.activator(src='http://d.gr-assets.com/books/1447139181l/25897953.jpg')
+                        .card-content
+                            span.card-title.activator.grey-text.text-darken-4
+                                | Card Title
+                                i.material-icons.right more_vert
+                            p
+                                a(href='#') This is a link
+                        .card-reveal
+                            span.card-title.grey-text.text-darken-4
+                                | Card Title
+                                i.material-icons.right close
+                            p
+                                | Here is some more information about this product that is only revealed once clicked on.
+                .col.s4
+                    .card
+                        .card-image.waves-effect.waves-block.waves-light
+                            img.activator(src='http://d.gr-assets.com/books/1447139181l/25897953.jpg')
+                        .card-content
+                            span.card-title.activator.grey-text.text-darken-4
+                                | Card Title
+                                i.material-icons.right more_vert
+                            p
+                                a(href='#') This is a link
+                        .card-reveal
+                            span.card-title.grey-text.text-darken-4
+                                | Card Title
+                                i.material-icons.right close
+                            p
+                                | Here is some more information about this product that is only revealed once clicked on.

@@ -1,0 +1,40 @@
+doctype html
+html
+    head
+        include ./includes/header
+
+    style(type='text/css', media='screen').
+        html,body {
+            height: 100%;
+        }
+        html {
+            display: table;
+            margin: auto;
+        }
+        body {
+            background-color: #002147;
+            display: table-cell;
+            vertical-align: middle;
+        }
+        footer.page-footer {
+            background-color: rgba(26, 35, 126, 0);
+        }
+
+    body
+        block content
+        footer.page-footer
+            .footer-copyright
+                .container
+                    span
+                        | Copyright &copy; 2016&nbsp;
+                        a.grey-text.text-lighten-4(href='http://bafe.edu.kg' target='_blank') BAFE&nbsp;
+                        | All rights reserved.
+                    span.right
+                        | Design and Developed by&nbsp;
+                        a.grey-text.text-lighten-4(href='http://bafe.edu.kg') RE.
+
+            <!-- Import jQuery  -->
+            script(type='text/javascript', src='https://code.jquery.com/jquery-2.1.1.min.js')
+
+            <!-- Materialize JavaScript -->
+            script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js')

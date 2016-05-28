@@ -1,0 +1,19 @@
+extends ../layout_admin
+block content
+    .row
+        .col.s4
+        .col.s8
+            table.responsive-table
+                thead
+                    tr
+                        th(data-field='') Name
+                        th(data-field='') Item Name
+                        th(data-field='') Item Price
+                tbody
+                    each book, i in books
+                        tr
+                            td #{book.book_title}
+                            td #{book.author}
+                            td #{book.year}
+                            td #{book.language}
+                            td #{book.publishedDate}

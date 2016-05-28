@@ -1,0 +1,35 @@
+extends login_layout
+
+block content
+    #login-page.row
+      .col.s12.z-depth-4.card-panel
+
+          if (message!= null)
+
+
+
+          form.login-form(action='/login',method='post')
+              .row
+                  .input-field.col.s12.center
+                      img.responsive-img.valign.profile-image-login(src='http://bafe.edu.kg/wp-content/uploads/2016/05/logo.png', alt='')
+
+              .row.margin
+                  .input-field.col.s12
+                      i.material-icons.prefix person_outline
+                      input#email(type='email')
+                      label.center-align(for='email', data-error='wrong', data-success='right') Username
+              .row.margin
+                  .input-field.col.s12
+                      i.material-icons.prefix lock_outline
+                      input#password(type='password')
+                      label.center-align(for='password') Password
+              .row
+                  .input-field.col.s12.m12.l12.login-text
+                      input#remember-me(type='checkbox')
+                      label(for='remember-me') Remember me
+
+              .row
+                  .input-field.col.s12
+                      button.btn.waves-effect.waves-light.right.submit(type='submit', name='action')
+                         | Войти
+                         i.material-icons.prefix send
