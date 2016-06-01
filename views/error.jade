@@ -1,6 +1,39 @@
 extends layout
-
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  .container.main-page
+    .row
+      .col.s4
+        .input-field.col.s12
+          select
+            option(value='', disabled='', selected='') Choose your option
+            option(value='1') Option 1
+            option(value='2') Option 2
+            option(value='3') Option 3
+          label Materialize Select
+        .input-field.col.s12
+          select(multiple='')
+            option(value='', disabled='', selected='') Choose your option
+            option(value='1') Option 1
+            option(value='2') Option 2
+            option(value='3') Option 3
+          label Materialize Multiple Select
+        .input-field.col.s12
+          select(multiple='')
+            optgroup(label='team 1')
+              option(value='1') Option 1
+              option(value='2') Option 2
+            optgroup(label='team 2')
+              option(value='3') Option 3
+              option(value='4') Option 4
+          label Optgroups
+        .col.s12
+          label Browser Select
+          select.browser-default
+            option(value='', disabled='', selected='') Choose your option
+            option(value='1') Option 1
+            option(value='2') Option 2
+            option(value='3') Option 3
+      .col.s8
+        h1= message
+        h2= error.status
+        //pre #{error.stack}

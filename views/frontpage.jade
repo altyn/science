@@ -37,67 +37,20 @@ block content
                         option(value='3') Option 3
 
             .col.s8
-                .col.s4
-                    .card
-                        .card-image.waves-effect.waves-block.waves-light
-                            img.activator(src='http://d.gr-assets.com/books/1447139181l/25897953.jpg')
-                        .card-content
-                            span.card-title.activator.grey-text.text-darken-4
-                                | Card Title
-                                i.material-icons.right more_vert
-                            p
-                                a(href='#') This is a link
-                        .card-reveal
-                            span.card-title.grey-text.text-darken-4
-                                | Card Title
-                                i.material-icons.right close
-                            p
-                                | Here is some more information about this product that is only revealed once clicked on.
-                .col.s4
-                    .card
-                        .card-image.waves-effect.waves-block.waves-light
-                            img.activator(src='http://d.gr-assets.com/books/1447139181l/25897953.jpg')
-                        .card-content
-                            span.card-title.activator.grey-text.text-darken-4
-                                | Card Title
-                                i.material-icons.right more_vert
-                            p
-                                a(href='#') This is a link
-                        .card-reveal
-                            span.card-title.grey-text.text-darken-4
-                                | Card Title
-                                i.material-icons.right close
-                            p
-                                | Here is some more information about this product that is only revealed once clicked on.
-                .col.s4
-                    .card
-                        .card-image.waves-effect.waves-block.waves-light
-                            img.activator(src='http://d.gr-assets.com/books/1447139181l/25897953.jpg')
-                        .card-content
-                            span.card-title.activator.grey-text.text-darken-4
-                                | Card Title
-                                i.material-icons.right more_vert
-                            p
-                                a(href='#') This is a link
-                        .card-reveal
-                            span.card-title.grey-text.text-darken-4
-                                | Card Title
-                                i.material-icons.right close
-                            p
-                                | Here is some more information about this product that is only revealed once clicked on.
-                .col.s4
-                    .card
-                        .card-image.waves-effect.waves-block.waves-light
-                            img.activator(src='http://d.gr-assets.com/books/1447139181l/25897953.jpg')
-                        .card-content
-                            span.card-title.activator.grey-text.text-darken-4
-                                | Card Title
-                                i.material-icons.right more_vert
-                            p
-                                a(href='#') This is a link
-                        .card-reveal
-                            span.card-title.grey-text.text-darken-4
-                                | Card Title
-                                i.material-icons.right close
-                            p
-                                | Here is some more information about this product that is only revealed once clicked on.
+                each mb, i in books
+                    .col.s4
+                        .card
+                            .card-image.waves-effect.waves-block.waves-light
+                                img.activator(src='#{mb.image}')
+                            .card-content
+                                span.card-title.activator.grey-text.text-darken-4
+                                    | #{mb.book_title}
+                                    i.material-icons.right more_vert
+                                p
+                                    a(href='#{mb.downloadLink}') Скачать
+                            .card-reveal
+                                span.card-title.grey-text.text-darken-4
+                                    | #{mb.book_title}
+                                    i.material-icons.right close
+                                p
+                                    | Here is some more information about this product that is only revealed once clicked on.

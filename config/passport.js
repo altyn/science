@@ -18,30 +18,25 @@ module.exports = function (passport) {
 
     passport.use('local-signup', new LocalStrategy({
 
-            username : 'username',
-            password : 'password',
+            usernameField : 'email',
+            passwordField : 'password',
             passReqToCallback : true
         },
-        function (req, username, password, done) {
+        function (req, email, password, done) {
 
             // asynchronous
             // User.findOne wont fire unless data is sent back
             process.nextTick(function(){
-
                 // find a user whose username is the same as the forms username
                 // we are checking to see if the user trying to login already exists
-                User.findOne({ 'username' : username}, function (err, user) {
+                User.findOne({ 'local.email' : email}, function (err, user) {
                     // if there are any errors, return the error
                     if (err)
                         return done(err);
 
                     // check to see if theres already a user with that username
                     if (user) {
-                        return done(
-                            null, false, req.flash(
-                                'signupMessage', 'Пользователь с таким именем уже существует'
-                            )
-                        );
+                        return done(null, false, req.flash('signupMessage', 'Пользователь с таким именем уже существует.'));
                     } else {
 
                         //if there is no user with that username
@@ -49,11 +44,9 @@ module.exports = function (passport) {
                         var newUser = new User();
 
                         // set the user's local credentials
-                        newUser.username = username;
-                        newUser.nickName = nick;
-                        newUser.passsword = newUser.generateHash(password);
-
-                        // save the user
+                        newUser.local.email = email;
+                        newUser.local.password = newUser.generateHash(password);
+                        // save the User
                         newUser.save( function (err) {
                             if (err)
                                 throw err;
@@ -65,18 +58,20 @@ module.exports = function (passport) {
     }));
 
     passport.use('local-login', new LocalStrategy({
-        usernameField: 'username',
+        usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
     },
-        function (req, username, password, done) {
-        User.findOne({ 'username': username }, function(err, user){
+        function (req, email, password, done) {
+        User.findOne({ 'local.email': email }, function(err, user){
            if (err)
                 return done(err);
            if (!user)
                 return done(null, false, req.flash('loginMessage', 'Неправильное имя пользователя!'));
            if (!user.validPassword(password))
-                return done(null, false, req.flash('loginMessage', 'Неправильно введен пароль!'))
+                return done(null, false, req.flash('loginMessage', 'Неправильно введен пароль!'));
+           return done(null, user);
         });
     }));
+
 };

@@ -33,19 +33,19 @@ block content
                         if message
                             .alert.alert-danger #{ message }
 
-                        form.col.s12
+                        form#userAdd.col.s12(action="/signup" method="post")
                             .row
                                 .input-field.col.s6
                                     i.material-icons.prefix person_outline
-                                    input#username(type='text')
-                                    label(for='username') Username
+                                    input#email(type='text', name="email")
+                                    label(for='email') Username
                                 .input-field.col.s6
                                     i.material-icons.prefix lock_outline
-                                    input#password(type='password')
+                                    input#password(type='password', name="password")
                                     label(for='password') Password
-                .modal-footer
-                    a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Сохранить
-                    a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') Отмена
+                                .modal-footer
+                                    input(type="submit", value="Сохранить", class="btn btn-success")
+                                    a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') Отмена
 
 
             script
