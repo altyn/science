@@ -7,7 +7,7 @@ var Book = require('../models/books');
 router.get('/', function (req, res) {
     Book.
         find({}).
-        sort('publishedDate').
+        sort({publishedDate: 'desc'}).
         exec( function (err, books) {
             if(err) return console.error(err);
 
@@ -21,19 +21,33 @@ router.get('/', function (req, res) {
 router.get('/j', function (req, res) {
     Book.
         find({}).
-        sort('publishedDate').
+        sort({publishedDate: 'desc'}).
         exec( function (err, books) {
             if(err) return console.error(err);
 
-            res.jsonp('admin/books', {
+            res.status(200).json('admin/books', {
                 title: "Список книг",
                 books : books
             })
         });
+
 });
 
 router.get('/add', function (req, res) {
     res.render('admin/addBook');
+});
+
+router.get('/edit/:id?/', function (req, res) {
+    Book.findById ( req.params.id, function(err, book){
+        if(err) return console.error(err);
+
+        res.render('admin/editBook',{
+         locals: {
+             title: "Изменить",
+             book: book
+         }
+        });
+    });
 });
 
 router.post('/add', function(req, res) {
@@ -43,7 +57,10 @@ router.post('/add', function(req, res) {
         var newBook = Book({
             book_title: req.body.book_title,
             author: req.body.book_author,
+            _id: req.body.book_isbn,
             bookType: req.body.book_type,
+            image: req.body.book_photo,
+            downloadLink: req.body.book_link,
             year: req.body.year_pub,
             language: req.body.book_lang
         });
@@ -59,52 +76,6 @@ router.post('/add', function(req, res) {
     } else {
         next();
     }
-
-    //Book.find({ book_title: req.body.book_title }, function(err, book) {
-
-    //    if (err) throw err;
-    //
-    //    if(book.length)
-    //        console.log('eerorororororo');
-    //
-    //});
-        //if(req.body){
-        //    var newBook = Book({
-        //        book_title : req.body.book_title,
-        //        author : req.body.book_author,
-        //        bookType : req.body.book_type,
-        //        year : req.body.year_pub,
-        //        language : req.body.book_lang
-        //    });
-        //
-        //    Book.find({book_title : req.body.book_title}, function (err, docs) {
-        //        if (docs.length){
-        //            res.flash('info', 'Name exists already');
-        //            //cb('Name exists already',null);
-        //        }else{
-        //            newBook.save(function (err) {
-        //                if(err){
-        //
-        //                    next(err);
-        //                } else {
-        //                    res.status(200);
-        //                }
-        //            });
-        //        }
-        //    });
-        //
-        //
-        //} else {
-        //    throw err;
-        //}
-})
-
-router.post('/thumb', function(req, res, next) {
-
-})
-
-router.post('/link', function(req, res, next) {
-
-})
+});
 
 module.exports = router;

@@ -1,0 +1,28 @@
+extends ../layout_admin
+block content
+    .row
+        include ./sidebar_admin
+
+        .col.s8
+            .row
+                 .col.s8
+                    h3 Добавить файл
+                    a.waves-effect.waves-light.btn(href='/upload/thumb')
+                        i.material-icons add
+            .row
+                h3 Файлы
+                .col.s12
+                    table.responsive-table.bordered
+                        thead
+                            tr
+                                th(data-field='') №
+                                th(data-field='') Файл
+                                th(data-field='') Загружен
+
+                        tbody
+                        each fl, i in files
+                            tr(name='#{fl._id}')
+                                td 1
+                                td
+                                    a(title='#{fl.link}', href='/uploads/files/#{fl.link}') #{fl.link}
+                                td #{fl.uploaded}

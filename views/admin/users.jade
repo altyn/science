@@ -1,0 +1,55 @@
+extends ../layout_admin
+block content
+    .row
+        include ./sidebar_admin
+        .col.s8
+            .row
+                .col.s8
+                    h3 Добавить Пользователя
+                    a.modal-trigger.waves-effect.waves-light.btn(href='#addUser')
+                        i.material-icons add
+
+            .row
+                h3 Пользователи
+                .col.s12
+                    table.responsive-table.bordered
+                        thead
+                            tr
+                                th(data-field='') №
+                                th(data-field='') Файл
+                                th(data-field='') Загружен
+                        tbody
+
+                    tr(name='')
+                        td 1
+                        td
+                            a(title='', href='')
+                        td
+
+            #addUser.modal
+                .modal-content
+                    h4 Добавить нового пользователя
+                    .row
+                        if message
+                            .alert.alert-danger #{ message }
+
+                        form.col.s12
+                            .row
+                                .input-field.col.s6
+                                    i.material-icons.prefix person_outline
+                                    input#username(type='text')
+                                    label(for='username') Username
+                                .input-field.col.s6
+                                    i.material-icons.prefix lock_outline
+                                    input#password(type='password')
+                                    label(for='password') Password
+                .modal-footer
+                    a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Сохранить
+                    a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') Отмена
+
+
+            script
+                | $(document).ready(function(){
+                | // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                | $('.modal-trigger').leanModal();
+                | });

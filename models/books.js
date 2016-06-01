@@ -3,6 +3,11 @@ var mongoose = require('mongoose'),
 
 var booksSchema = new Schema({
 
+    _id: {
+        type: String,
+        required: true,
+        unique: true
+    },
     book_title: {
         type: String,
         required: true,

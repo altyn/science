@@ -1,19 +1,40 @@
 extends ../layout_admin
+
 block content
     .row
-        .col.s4
+        include ./sidebar_admin
         .col.s8
-            table.responsive-table
-                thead
-                    tr
-                        th(data-field='') Name
-                        th(data-field='') Item Name
-                        th(data-field='') Item Price
-                tbody
-                    each book, i in books
-                        tr
-                            td #{book.book_title}
-                            td #{book.author}
-                            td #{book.year}
-                            td #{book.language}
-                            td #{book.publishedDate}
+            .row
+                .col.s12
+                    h3 Добавить новый
+                    a.waves-effect.waves-light.btn(href='/book/add')
+                        i.material-icons add
+            .row
+                .col.s12
+                    table.responsive-table.bordered
+                        thead
+                            tr
+                                th(data-field='') Название
+                                th(data-field='') Автор
+                                th(data-field='') Тип
+                                th(data-field='') Год
+                                th(data-field='') Язык
+                                th(data-field='')
+
+                        tbody
+                            each de, i in books
+                                tr(name='#{de.isbn}')
+                                    td #{de.book_title}
+                                    td #{de.author}
+                                    td #{de.bookType}
+                                    td #{de.year}
+                                    td #{de.language}
+                                    td
+                                        a.waves-effect.waves-light.btn(href='/book/edit/#{de._id}')
+                                            i.material-icons create
+                                    td
+                                        a.waves-effect.waves-light.btn(href="#!")
+                                            i.material-icons search
+                                    td
+                                        a.waves-effect.waves-light.btn(href="#!")
+                                            i.material-icons delete

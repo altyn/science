@@ -2,66 +2,80 @@ extends ../layout_admin
 
 block content
     .row
-        .col.s4
+        include ./sidebar_admin
         .col.s8
             .row
                 if messages.info
                     script(type='text/javascript').
                         Materialize.toast('info', 4000)
 
-                form.col.s12(name="textInf", action='/addbook/', method='post')
+                form.col.s12(name="textInf")
                     .row
                         .input-field.col.s12
                             input#book_title(type='text', name='book_title')
                             label(for='title') Название
                     .row
-                        .input-field.col.s12.sel-auth
-                                select#book_author(name='book_author')
-                                    option(value='нет', disable selected) Нет
-                                    option(value='Option 1') Option 1
-                                    option(value='Option 2') Option 2
-                                    option(value='Option 3') Option 3
-                                label Автор
+                        .input-field.col.s8
+                            input#book_author(type='text', name='book_author')
+                            label(for='book_author') Автор
+
+                        .input-field.col.s4
+                            input#book_isbn(type='text', name='book_isbn')
+                            label(for='book_isbn') ISBN
+
                     .row
                         .input-field.col.s4
                                 select#book_type(name='book_type')
                                     option(value='нет', disabled selected) Выбрать тип
-                                    option(value='Option 1') Option 1
-                                    option(value='Option 2') Option 2
-                                    option(value='Option 3') Option 3
+                                    option(value='Монография') Монография
+                                    option(value='Научная статья') Научная статья
+                                    option(value='Методичка') Методичка
                                 label Тип
                         .input-field.col.s4
-                                select#year_pub(name='year_pub')
-                                    option(value='нет', disabled selected) Выбрать год издания
-                                    option(value='Option 1') Option 1
-                                    option(value='Option 2') Option 2
-                                    option(value='Option 3') Option 3
-                                label Год издания
+                            input#year_pub(type='text', name='year_pub')
+                            label(for='title') Введите год издания
                         .input-field.col.s4
                                 select#book_lang(name='book_lang')
                                     option(value='нет', disabled selected) Выбрать язык книги
-                                    option(value='Option 1') Option 1
-                                    option(value='Option 2') Option 2
-                                    option(value='Option 3') Option 3
+                                    option(value='Кыргызский') Кыргызский
+                                    option(value='Русский') Русский
+                                    option(value='English') English
                                 label Язык книги
+
+                    .row
+                        .input-field.col.s6
+                            input#book_photo(type='text', name='book_photo')
+                            label(for='book_photo') Ссылка обложки
+                        .input-field.col.s6
+                            input#book_link(type='text', name='book_link')
+                            label(for='book_link') Ссылка на файл
+
                     .row
                         .col.s12
                                 input(type="submit", value="Сохранить", class="btn btn-success")
 
-                form.col.s12#bookThumb(action='#', method='POST')
-                    .row
-                        .file-field.input-field
-                            .btn
-                                span Обложка книги
-                                input#book_image(type='file', name='book_image')
-                            .file-path-wrapper
-                                input.file-path(type='text')
-
-                form.col.s12#bookLink(action='#', method='POST')
-                    .row
-                        .file-field.input-field
-                            .btn
-                                span Ссылка для скачивания
-                                input#downloadLink(type='file', name='linkforDown')
-                            .file-path-wrapper
-                                input.file-path(type='text')
+        script.
+            $(document.forms['textInf']).on('submit', function () {
+                var form = $(this);
+                $('.error', form).html('');
+                $(":submit", form).text("loading");
+                $.ajax({
+                    url: "/book/add",
+                    method: "POST",
+                    data: form.serialize(),
+                    complete: function () {
+                        $(":submit", form).text("Добавить");
+                    },
+                    statusCode: {
+                        200: function () {
+                            form.html("Данные успешно добавлены").addClass('alert-success');
+                            window.location.href = "/book";
+                        },
+                        403: function (jqXHR) {
+                            var error = JSON.parse(jqXHR.responseText);
+                            $('.error', form).html(error.message);
+                        }
+                    }
+                });
+                return false;
+            });
