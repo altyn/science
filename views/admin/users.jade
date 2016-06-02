@@ -16,15 +16,14 @@ block content
                         thead
                             tr
                                 th(data-field='') №
-                                th(data-field='') Файл
-                                th(data-field='') Загружен
+                                th(data-field='') Имя пользователя
+                                th(data-field='') Дата регистрации
                         tbody
-
-                    tr(name='')
-                        td 1
-                        td
-                            a(title='', href='')
-                        td
+                            each de, i in users
+                                tr(name='')
+                                    td 1
+                                    td #{de.local.email}
+                                    td #{de.created}
 
             #addUser.modal
                 .modal-content
