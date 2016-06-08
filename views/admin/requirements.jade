@@ -1,0 +1,26 @@
+extends ../layout_admin
+
+block content
+    .container.main-page
+        .row
+            .col.s4
+                include sidebar_admin
+            .col.s8
+                .card-panel
+                    h4.header2 Требования к статьям
+                    .row
+                        form.col.s12(action="/requirements", method="post")
+                            .row
+                                .input-field.col.s12
+                                    input(type='text', name='title', value="")
+                                    label(for='title') Тема
+                            .row
+                                .input-field.col.s12
+                                    textarea#textarea1.materialize-textarea(name='content')
+
+                            .row
+                                .input-field.col.s12
+                                    button.btn.cyan.waves-effect.waves-light.right(type='submit', name='action')
+                                        | Сохранить
+                                        i.mdi-content-send.right
+

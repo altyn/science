@@ -4,11 +4,7 @@ block content
     .container.main-page
         .row
             .col.s4
-                .collection
-                    a.collection-item.active(href='#!') Состав ред. коллегии
-					a.collection-item(href='#!') Правила оформления
-					a.collection-item(href='#!') Архив
-					a.collection-item(href='#!') Поиск
+                include main_sidebar
             .col.s8
                 each mb, i in books
                     .col.s4
@@ -20,7 +16,7 @@ block content
                                     | #{mb.book_title}
                                     i.material-icons.right more_vert
                                 p
-                                    a(href='#{mb.downloadLink}') Скачать
+                                    a(href='#{mb.downloadLink}' target="_blank") Скачать
                             .card-reveal
                                 span.card-title.grey-text.text-darken-4
                                     | #{mb.book_title}
