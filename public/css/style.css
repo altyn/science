@@ -18,3 +18,7 @@ main {
 .container.ft {
   width: 85%;
 }
+
+i.material-icons.md-light {
+  color: #fff;
+}
