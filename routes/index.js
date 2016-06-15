@@ -6,12 +6,12 @@ var Requirements = require('../models/requirements');
 var Compositions = require('../models/composition');
 
 
-router.use('/index',isLoggedIn , require('./main'));
-router.use('/book',isLoggedIn , require('./book'));
-router.use('/upload',isLoggedIn , require('./uploads'));
-router.use('/users',isLoggedIn , require('./users'));
-router.use('/requirements',isLoggedIn, require('./requirements'));
-router.use('/compositions',isLoggedIn, require('./compositions'));
+router.use('/index'/*,isLoggedIn*/ , require('./main'));
+router.use('/book'/*,isLoggedIn */, require('./book'));
+router.use('/upload'/*,isLoggedIn */, require('./uploads'));
+router.use('/users'/*,isLoggedIn */, require('./users'));
+router.use('/requirements',/*isLoggedIn,*/ require('./requirements'));
+router.use('/compositions',/*isLoggedIn,*/ require('./compositions'));
 
 
 router.get('/login', function(req, res) {
@@ -61,7 +61,7 @@ router.post('/login', passport.authenticate('local-login', {
   failureRedirect: '/login',
   failureFlash: true
 }));
-router.post('/signup', isLoggedIn, passport.authenticate('local-signup', {
+router.post('/signup',/* isLoggedIn, */passport.authenticate('local-signup', {
   successRedirect: '/users',
   failureRedirect: '/',
   failureFlash: true

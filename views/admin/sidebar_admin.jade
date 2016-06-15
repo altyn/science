@@ -1,17 +1,18 @@
 .col.s4
     .row
         .col.s12
-            ul.left.hide-on-med-and-down
-                li
-                    a(href='/book') Книги
-                li
-                    a(href='/requirements') Правила оформления
-                li
-                    a(href='/compositions') Состав ред. коллегии
-                li
-                    a(href='/upload') Файлы
-                li.active
-                    a(href='/users') Пользователи
+            .collection
+                a.collection-item(href='/book') Книги
+                    i.material-icons.left library_books
+                a.collection-item(href='/requirements') Правила оформления
+                    i.material-icons.left error_outline
+                a.collection-item(href='/compositions') Состав ред. коллегии
+                    i.material-icons.left supervisor_account
+                a.collection-item(href='/upload') Файлы
+                    i.material-icons.left attach_file
+                a.collection-item(href='/users') Пользователи
+                    i.material-icons.left perm_identity
+
     .row
         .col.s12
     .row
