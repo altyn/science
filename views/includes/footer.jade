@@ -23,8 +23,10 @@ script.
         $('.collapsible').collapsible();
         $('select').material_select();
         $('.collapsible').collapsible({ accordion : false });
+        $('.modal-trigger').leanModal();
+        $('ul.tabs').tabs();
     });
     tinymce.init({
-    selector: '#textarea1'
+        selector: '.materialize-textarea'
     });
 

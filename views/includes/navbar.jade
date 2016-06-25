@@ -1,33 +1,9 @@
 nav.teal.lighten-1(role='navigation')
+    a.brand-logo(href="/")
+        img(src="/img/logo.png")
     ul.right.hide-on-med-and-down
         li
-            a(href='#') Главная
-        li
-            a.dropdown-button(href='#!', data-activates='dropdown1')
-                | Книги
-                i.material-icons.right arrow_drop_down
+            a(href='/') Главная
         li
             a(href='/login' target='_blank')
                 i.material-icons exit_to_app
-        // Dropdown Trigger
-
-    ul#dropdown1.dropdown-content
-        li
-            a(href='#!') Монографии
-        li
-            a(href='#!') Научные статьи
-        li.divider
-        li
-            a(href='#!') Методички
-
-    ul#slide-out.side-nav
-            //li.logo
-            //    a#logo-container.brand-logo(href='http://materializecss.com/')
-            //        img(src='http://materializecss.com/res/materialize.svg')
-            li.bold
-                a.waves-effect.waves-teal(href='#!') О нас
-            li.bold
-                a.waves-effect.waves-teal(href='#!') Введение
-
-        a.button-collapse.show-on-large(href='#', data-activates='slide-out')
-            i.large.material-icons reorder

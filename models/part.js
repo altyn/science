@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var partSchema = new Schema({
 
     title: {
-        type: String,
+        type: Number,
         required: true,
         trim : true
     }

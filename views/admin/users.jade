@@ -5,7 +5,7 @@ block content
         .col.s8
             .row
                 .col.s8
-                    h3 Добавить Пользователя
+                    h5 Добавить
                     a.modal-trigger.waves-effect.waves-light.btn(href='#addUser')
                         i.material-icons add
 
@@ -36,19 +36,12 @@ block content
                             .row
                                 .input-field.col.s6
                                     i.material-icons.prefix person_outline
-                                    input#email(type='text', name="email")
+                                    input(type='text', name="email")
                                     label(for='email') Username
                                 .input-field.col.s6
                                     i.material-icons.prefix lock_outline
-                                    input#password(type='password', name="password")
+                                    input(type='password', name="password")
                                     label(for='password') Password
                                 .modal-footer
                                     input(type="submit", value="Сохранить", class="btn btn-success")
                                     a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') Отмена
-
-
-            script
-                | $(document).ready(function(){
-                | // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-                | $('.modal-trigger').leanModal();
-                | });

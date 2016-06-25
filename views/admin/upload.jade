@@ -6,8 +6,8 @@ block content
         .col.s8
             .row
                  .col.s8
-                    h3 Добавить файл
-                    a.waves-effect.waves-light.btn(href='/upload/thumb')
+                    h5 Добавить файл
+                    a.modal-trigger.waves-effect.waves-light.btn(href='#addfile')
                         i.material-icons add
             .row
                 h3 Файлы
@@ -20,9 +20,38 @@ block content
                                 th(data-field='') Загружен
 
                         tbody
-                        each fl, i in files
-                            tr(name='#{fl._id}')
-                                td 1
-                                td
-                                    a(title='#{fl.link}', href='/uploads/files/#{fl.link}') #{fl.link}
-                                td #{fl.uploaded}
+                            each fl, i in files
+                                tr(name='#{fl._id}')
+                                    td #{i+1}
+                                    td
+                                        a(title='#{fl.link}', href='/uploads/files/#{fl.link}', target='_blank') #{fl.link}
+                                    td #{moment(fl.uploaded).format('DD/MM/YYYY HH:mm')}
+                    ul.pagination.center-align
+                        li.disabled
+                            a(href='#!')
+                                i.material-icons chevron_left
+                        li.active
+                            a(href='#!') 1
+                        li.waves-effect
+                            a(href='#!') 2
+                        li.waves-effect
+                            a(href='#!') 3
+                        li.waves-effect
+                            a(href='#!') 4
+                        li.waves-effect
+                            a(href='#!') 5
+                        li.waves-effect
+                            a(href='#!')
+                                i.material-icons chevron_right
+
+            #addfile.modal
+                .modal-content
+                    h4 Добавить нового пользователя
+                    .row
+                        if message
+                            .alert.alert-danger #{ message }
+                        form(method='post', enctype='multipart/form-data', action='/upload')
+                            input(type='file', name='img')
+                            .modal-footer
+                                input(type="submit", value="Сохранить", class="btn btn-success")
+                                a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') Отмена

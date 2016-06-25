@@ -6,20 +6,47 @@ block content
             .col.s4
                 include main_sidebar
             .col.s8
-                each mb, i in books
-                    .col.s4
-                        .card
-                            .card-image.waves-effect.waves-block.waves-light
-                                img.activator(src='#{mb.image}')
-                            .card-content
-                                span.card-title.activator.grey-text.text-darken-4
-                                    | #{mb.book_title}
-                                    i.material-icons.right more_vert
-                                p
-                                    a(href='#{mb.downloadLink}' target="_blank") Скачать
-                            .card-reveal
-                                span.card-title.grey-text.text-darken-4
-                                    | #{mb.book_title}
-                                    i.material-icons.right close
-                                p
-                                    | Here is some more information about this product that is only revealed once clicked on.
+                .col.s12.m6
+                    .card.z-depth-5
+                        .card-image.waves-effect.waves-block.waves-light
+                            img.activator.responsive-img(src='/img/front.jpg')
+
+                .col.s12.m6
+                    p.caption.center-align ЭКОНОМИКА · УПРАВЛЕНИЕ · ОБРАЗОВАНИЕ
+                    .divider
+                    p.caption.center-align Международный экономический научный журнал
+                        | выпускается ежеквартально
+                        br
+                        | основан в 2015 г.
+                    .divider
+                    p.caption.center-align
+                        strong Учредитель:
+                        br
+                        a(href='http://bafe.edu.kg', target='_blank') Бишкекская Финансово-Экономическая Академия
+                    .divider
+                    p.caption.center-align Журнал зарегистрирован в Министерстве юстиции Кыргызской Республики
+                        | Регистрационный номер
+                        br
+                        | № 2062 от 26 декабря 2014г.
+                    .divider
+                    p.caption.center-align
+                        strong ISSN 1694 - 7738 (печатная версия)
+                    .divider
+                    p.caption.center-align
+                        strong Контакты:
+                        br
+                        | Кыргызская Республика, г. Бишкек, бул. Молодой Гвардии, 55
+                        br
+                        | Телефон:
+                        br
+                        | +996 312 39 22 78
+                        br
+                        | +996 312 65 45 77
+                        br
+                        | +996 312 39 22 47
+                        br
+                        | E-mail:
+                        br
+                        a(href='mailto:bafe2016@yandex.ru') bafe2016@yandex.ru
+                        br
+                        a(href='mailto:science@bafe.edu.kg') science@bafe.edu.kg

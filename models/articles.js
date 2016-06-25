@@ -8,12 +8,18 @@ var articleSchema = new Schema({
         required: true,
         trim : true
     },
-    author: [{
-        name: String
+    author: [
+        {
+        name: { type: String, trim: true}
     }],
     section: {
         type: String,
-        required: true
+        required: true,
+        trim: true
+    },
+    annotationKG: {
+        type: String,
+        default: "Кыргыз тилиндеги аннотациясы жок"
     },
     annotationRU: {
         type: String,
@@ -23,6 +29,10 @@ var articleSchema = new Schema({
         type: String,
         default: "Annotation is not available"
     },
+    content: {
+        type: String,
+        default: "Данная статья временно недоступно"
+    },
     year: {
         type: String,
         required: true
@@ -31,16 +41,18 @@ var articleSchema = new Schema({
         type: String,
         required: true
     },
+    language: {
+        type: String,
+        required: true,
+        default: "Русский"
+    },
     publishedDate: {
         type: Date,
         default: Date.now
     },
-    language: {
-        type: String,
-        required: true
-    },
     downloadLink: {
-        type: String
+        type: String,
+        default: "No links"
     }
 
 });

@@ -22,3 +22,15 @@ main {
 i.material-icons.md-light {
   color: #fff;
 }
+
+.article-list-box {
+  padding: 20px;
+}
+
+.pagination li.active {
+  background-color: #26a69a !important;
+}
+
+.tabs .tab a {
+  color: #26a69a !important;
+}

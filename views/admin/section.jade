@@ -1,0 +1,42 @@
+extends ../layout_admin
+block content
+    .row
+        include sidebar_admin
+        .col.s8
+            .row
+                .col.s12
+                    h5 Добавить
+                    a.modal-trigger.waves-effect.waves-light.btn(href='#addsection')
+                        i.material-icons add
+
+                    #addsection.modal
+                        .modal-content
+                            //h4 Добавить нового пользователя
+                            .row
+                                if message
+                                    .alert.alert-danger #{ message }
+                                form.col.s12(action="/sections", method="post")
+                                    .row
+                                        .input-field.col.s12
+                                            i.material-icons.prefix info_outline
+                                            input(type='text', name="title")
+                                            label(for='title') Направление
+                                    .modal-footer
+                                        input(type="submit", value="Сохранить", class="btn btn-success")
+                                        a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') Отмена
+
+
+            .row
+                h3 Список направлений
+                .col.s12
+                    table.responsive-table.bordered
+                        thead
+                            tr
+                                th(data-field='') №
+                                th(data-field='') Напраления
+
+                        tbody
+                            each s, i in section
+                                tr(name='#{s._id}')
+                                    td #{i+1}
+                                    td #{s.title}

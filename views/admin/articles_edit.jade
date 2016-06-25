@@ -1,0 +1,89 @@
+extends ../layout_admin
+block content
+    .row
+        include sidebar_admin
+        .col.s8
+            .row
+                .col.s12
+                    h5 Изменить статью
+            .row
+                .col.s12
+                    form(action='/articles/edit', method='post')
+                        .row
+                            .col.s12
+                                .row
+                                    .input-field.col.s12
+                                        input.validate(type='text', name='title', value='#{data.articles.title}')
+                                        label(for='title') Тема статьи
+                                .row
+                                    .input-field.col.s3
+                                        select(name='section')
+                                            if (data.sections)
+                                                each d, i in data.sections
+                                                    option(name='#{d.title}', selected = data.articles.section == d.title) #{d.title}
+                                            else
+                                                option(name='Не определено', disabled='', selected='') Не определено
+                                        label Направление
+                                    .input-field.col.s2
+                                        select(name='year')
+                                            if (data.years)
+                                                each d, i in data.years
+                                                    option(name='#{d.title}', selected = data.articles.year == d.title) #{d.title}
+                                            else
+                                                option(name='Не определено', disabled='', selected='') Не определено
+                                        label Год
+                                    .input-field.col.s4
+                                        select(name='release')
+                                            if (data.releases)
+                                                each d, i in data.releases
+                                                    option(name='#{d.title}', value='#{d.title}', selected = data.articles.year == d.title) #{d.title} - #{d.year}
+                                            else
+                                                option(name='Не определено', disabled='', selected='') Не определено
+                                        label Выпуски
+                                    .input-field.col.s3
+                                        select(name='lang')
+                                            option(name='Не определено', disabled='', selected='') Не определено
+                                            option(name='Кыргызча') Кыргызча
+                                            option(name='Русский') Русский
+                                            option(name='English') English
+                                        label Язык статьи
+
+                                .row
+                                    .input-field.col.s12
+                                        input.validate(type='text', name='author')
+                                        label(for='author') Авторы
+                                .row
+                                    .input-field.col.s12
+                                        input.validate(type='text', name='link')
+                                        label(for='link') Ссылка для скачивания
+                                .divider
+                                .row
+                                    .col.s12
+                                        ul.tabs
+                                            li.tab.col.s3
+                                                a(href='#kg') Аннтация KG
+                                            li.tab.col.s3
+                                                a(href='#ru') Аннотация RU
+                                            li.tab.col.s3
+                                                a(href='#en') Annotation EN
+                                        #kg.col.s12
+                                            .input-field.col.s12
+                                                textarea.materialize-textarea(name='contentky')
+                                        #ru.col.s12
+                                            .input-field.col.s12
+                                                textarea.materialize-textarea(name='contentru')
+                                        #en.col.s12
+                                            .input-field.col.s12
+                                                textarea.materialize-textarea(name='contenten')
+                                .divider
+                                .row
+                                    .col.s12
+                                        ul.tabs
+                                            li.tab.col.s12
+                                                a(href='#content') Содержание статьи
+                                        #content.col.s12
+                                            .input-field.col.s12
+                                                textarea.materialize-textarea(name='content')
+
+                        .row.center-align
+                            input.btn.btn-success(type='submit', value='Сохранить')

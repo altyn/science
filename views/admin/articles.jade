@@ -1,21 +1,34 @@
 extends ../layout_admin
 block content
     .row
-        include ./sidebar_admin
+        include sidebar_admin
         .col.s8
             .row
                 .col.s12
-                    h3 Добавить новый
-                    a.waves-effect.waves-light.btn(href='/book/add')
+                    h5 Добавить
+                    a.modal-trigger.waves-effect.waves-light.btn(href='/articles/add')
                         i.material-icons add
+
             .row
+                h3 Опубликованные статьи
                 .col.s12
-                    each a, i in data
-                        .row
-                            .col.s12.m6
-                                .card.blue-grey.darken-1
-                                    .card-content.white-text
-                                        p
-                                            | #{a.title}
-                                    .card-action
-                                        a(href='/articles/show/#{a._id}') Показать
+                    table.responsive-table.bordered
+                        thead
+                            tr
+                                th(data-field='') №
+                                th(data-field='') Тема статьи
+                                th(data-field='') Авторы
+                                th(data-field='') Выпуски
+
+                        tbody
+                            each a, i in data
+                                tr(name='#{a._id}')
+                                    td #{i+1}
+                                    td
+                                        a(href='/articles/edit/'+a._id) #{a.title}
+                                    td
+                                        each n, j in a.author
+                                            li #{n.name}
+                                    td #{a.release}
+
+

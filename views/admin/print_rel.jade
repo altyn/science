@@ -1,0 +1,49 @@
+extends ../layout_admin
+block content
+    .row
+        include ./sidebar_admin
+        .col.s8
+            .row
+                .col.s12
+                    h5 Добавить
+                    a.modal-trigger.waves-effect.waves-light.btn(href='#addrel')
+                        i.material-icons add
+            .row
+                h3 Выпуски
+                .col.s12
+                    table.responsive-table.bordered
+                        thead
+                            tr
+                                th(data-field='') №
+                                th(data-field='') Выпуск
+                                th(data-field='') Год
+                        tbody
+                            each r, i in catalog.releases
+                                tr(name='#{r.title}')
+                                    td #{i + 1}
+                                    td #{r.title}
+                                    td #{r.year}
+                                    td
+                                        a.waves-effect.waves-light.btn(href="#!")
+                                            i.material-icons delete
+            #addrel.modal
+                .modal-content
+                    .row
+                        if message
+                            .alert.alert-danger #{ message }
+                        form#userAdd.col.s12(action="/print_rel" method="post")
+                            .row
+                                .input-field.col.s6
+                                    i.material-icons.prefix person_outline
+                                    input(type='text', name="title")
+                                    label(for='title') Выпуска №
+
+                                .input-field.col.s6
+                                    i.material-icons.prefix info_outline
+                                    select(name='year')
+                                        each c, i in catalog.parts
+                                            option(name="#{c.title}") #{c.title}
+                                    label(for='title') Год выпуска
+                            .modal-footer
+                                input(type="submit", value="Сохранить", class="btn btn-success")
+                                a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') Отмена

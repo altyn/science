@@ -29,7 +29,7 @@ module.exports = function (passport) {
             process.nextTick(function(){
                 // find a user whose username is the same as the forms username
                 // we are checking to see if the user trying to login already exists
-                User.find({ 'local.email' : email}, function (err, user) {
+                User.findOne({ 'local.email' : email}, function (err, user) {
                     // if there are any errors, return the error
                     if (err)
                         return done(err);
