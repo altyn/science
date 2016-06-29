@@ -41,6 +41,7 @@ router.post('/', function(req, res) {
             annotationRU: req.body.contentru,
             annotationEN: req.body.contenten,
             year: req.body.year,
+            downloadLink: req.body.link,
             release: rel_arr[0],
             content: req.body.content,
             language: req.body.lang
@@ -127,6 +128,13 @@ router.get('/edit/:id', function (req, res) {
                 return callback(err, result);
 
             });
+        },
+        authors: function (callback) {
+            return Article.findOne({_id: id}).select('author.name').sort({publishedDate: 'desc'}).exec( function (err, result) {
+                if(err) return(err);
+                return callback(err, result);
+                console.log(result);
+            });
         }
     }, function(err, data){
         if(err) return console.error(err);
@@ -136,6 +144,42 @@ router.get('/edit/:id', function (req, res) {
             data : data
         });
     });
+});
+
+router.post('/edit/:id', function (req, res) {
+
+    var id = req.params.id;
+    var rel_long = req.body.release;
+    var rel_arr = rel_long.split("-");
+
+    if(req.body) {
+
+        var articleData = {
+            title: req.body.title,
+            section: req.body.section,
+            annotationKG: req.body.contentky,
+            annotationRU: req.body.contentru,
+            annotationEN: req.body.contenten,
+            year: req.body.year,
+            downloadLink: req.body.link,
+            release: rel_arr[0],
+            content: req.body.content,
+            language: req.body.lang
+
+        };
+
+        Article.findByIdAndUpdate(id, articleData, {new: false}, function (err) {
+            if(err) {
+                console.error(err);
+            } else {
+                res.redirect('/articles');
+
+            }
+        });
+
+    } else {
+        next();
+    }
 });
 
 module.exports = router;

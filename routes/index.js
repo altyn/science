@@ -39,8 +39,7 @@ router.post('/login', passport.authenticate('local-login', {
 
 router.get('/', function(req, res) {
         res.render( 'frontpage', {
-            title : 'Научные пуликации БФЭА',
-            parts_menu: parts_menu
+            title : 'Научные пуликации БФЭА'
         });
 });
 router.get('/trebovaniya', function (req, res) {
@@ -74,7 +73,6 @@ router.get('/sostav', function (req, res) {
         });
 });
 router.use('/release', require('./release'));
-
 
 module.exports = router;
 

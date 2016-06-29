@@ -39,7 +39,8 @@ var articleSchema = new Schema({
     },
     release: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     language: {
         type: String,

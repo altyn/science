@@ -6,6 +6,21 @@ block content
                 include main_sidebar
             .col.s8
                 .row
-                    .col.s6
-                        .card.z-depth-3.article-list-box
-                            p #{title}
+                    each r, i in data
+                        .col.s12
+                            .card.z-depth-3.article-list-box
+                                h5.center-align #{r.title}
+                                each y, j in r.author
+                                    .chip
+                                        | #{y.name}
+                                        i.material-icons close
+                                .divider
+                                br
+                                p.flow-text
+                                    | !{r.annotationRU}
+                                br
+                                p.flow-text
+                                    | !{r.annotationEN}
+
+                                .card-action
+                                    a.waves-effect.waves-teal.right-align(href="/uploads/files/"+ r.downloadLink, target='_blank') Читать далее....
