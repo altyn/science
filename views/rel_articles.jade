@@ -6,10 +6,12 @@ block content
                 include main_sidebar
             .col.s8
                 .row
+                    h5.center-align Выпуск № #{relese} Год: #{year_rel}
                     each r, i in data
                         .col.s12
                             .card.z-depth-3.article-list-box
-                                h5.center-align #{r.title}
+                                h5.center-align
+                                    a(href="/uploads/files/"+ r.downloadLink, target="_blank") #{r.title}
                                 each y, j in r.author
                                     .chip
                                         | #{y.name}
@@ -23,4 +25,4 @@ block content
                                     | !{r.annotationEN}
 
                                 .card-action
-                                    a.waves-effect.waves-teal.right-align(href="/uploads/files/"+ r.downloadLink, target='_blank') Читать далее....
+                                    a.waves-effect.waves-teal.right-align(href="/uploads/files/"+ r.downloadLink, target='_blank') Скачать файл
